@@ -1,0 +1,5 @@
+https://catalog.data.gov/dataset/chicago-traffic-tracker-congestion-estimates-by-segments
+https://catalog.data.gov/dataset/traffic-volume-counts
+https://catalog.data.gov/dataset/automated-traffic-volume-counts
+
+https://data.cityofchicago.org/Transportation/Chicago-Traffic-Tracker-Historical-Congestion-Esti/sxs8-h27x/about_data
