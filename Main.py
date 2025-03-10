@@ -2,6 +2,16 @@ import pandas as pd
 from Graph import Graph
 from DataFetch import get_dataframe_content
 
+'''
+In order to predict the route in a reasonable time, it's going to be necessary to fetch
+some real-time data.
+Because the model's LOOKBACK = 24, it's going to be necessary at least 24 timestamps for each segment
+at least 24 * 1047 = 25128 rows
+Fetching data takes a long time, in this case, we're going to use a recursive approach to predict next values
+and avoid refetching
+Gotta make easier to map and remap values too
+'''
+
 def get_sets(content: pd.DataFrame):
     vertices_compress = {}
     vertices_map = {}
@@ -28,8 +38,10 @@ def get_sets(content: pd.DataFrame):
 
     return vertices_compress, vertices_map, streets_set
 
+
+# TODO: Because the city graph is always the same, it makes sense to save it into a binary file 
 def create_city_graph(vertices_compress, vertices_map, streets_set) -> Graph:
-    VERTICES_THRESHOLD = 5
+    VERTICES_THRESHOLD = 150
 
     #c = 0
     city = Graph(len(vertices_map)+1)
@@ -54,14 +66,14 @@ def run():
 
     SRC = "Damen"
     TARGET = "Western"
-    VELOCITY = 60 # Km
+    MAX_SPEED = 60 # Km
 
     sssp = city.dynamic_dijkstra(vertices_compress[SRC], vertices_compress[TARGET])
     HAS_ROUTE = (sssp[0] != float('inf'))
 
     print(f"\n < {SRC} ==> {TARGET} >")
-    print(f" Max. Velocity: {VELOCITY} km/h\t Time: " + str(sssp[0]/VELOCITY*3600) + " seconds   Distance: " + str(sssp[0]) + " km")
-    if HAS_ROUTE: print(f" The shortest route is: \n {[vertices_map[node] for node in sssp[1]]} \n {sssp[2]}")
+    print(f" Max. Velocity: {MAX_SPEED} km/h\t Time: " + str(sssp[0]) + " seconds   Distance: " + str(sssp[1]) + " km")
+    if HAS_ROUTE: print(f" The shortest route is: \n {[vertices_map[node] for node in sssp[2]]} \n {sssp[3]}")
     else: print(f" There's no route between {SRC} and {TARGET}")
 
 run()
