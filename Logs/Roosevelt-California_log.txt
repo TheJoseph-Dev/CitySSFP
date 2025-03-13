@@ -1,0 +1,19 @@
+
+ < Roosevelt ==> California >
+ Max. Velocity: 60 km/h	 Time: 224.02068480000003 seconds   Distance: 3.7336780800000007 km
+ The shortest route is: 
+ ['Roosevelt', '16th', 'Cermak', 'Archer', '47th', 'Kedzie', 'California'] 
+ [917, 914, 1253, 33, 500, 1001]
+
+ < Roosevelt ==> California >
+ Max. Velocity: 60 km/h	 Time: 280.99146240000005 seconds   Distance: 4.6831910400000005 km
+ The fastest route is: 
+ ['Roosevelt', 'Balbo', 'Monroe', 'Randolph', '1550 West', 'Ashland', 'Damen', 'Western', 'California'] 
+ [584, 586, 587, 1061, 1062, 975, 463, 789]
+SSFP is 5.29 seconds faster than normal SSSP
+
+ < Roosevelt ==> California >
+ Max. Velocity: 60 km/h	 Time: 283.3192550071417 seconds   Distance: 4.6831910400000005 km
+ The fastest future route is: 
+ ['Roosevelt', 'Balbo', 'Monroe', 'Randolph', '1550 West', 'Ashland', 'Damen', 'Western', 'California'] 
+ [584, 586, 587, 1061, 1062, 239, 463, 789]

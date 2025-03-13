@@ -17,10 +17,13 @@ While running dijkstra, the neural network is tasked to predict the future traff
 ## Checklist
 
 - [x] Graph and SSSP
+- [X] Retrieve SSFP
 - [x] Neural Network
-- [ ] Multiple Timestamps Prediction 
-- [ ] Dynamic Dijkstra
-- [ ] Visualization
+- [X] Multiple Timestamps Prediction 
+- [X] Dynamic Dijkstra
+- [X] Neural Network Chart Visualization
+- [ ] Function Filter (Convolutional, Linear, etc)
+- [ ] Graph Visualization
 
 --- 
 

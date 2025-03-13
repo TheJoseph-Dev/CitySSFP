@@ -112,6 +112,14 @@ def split_data(data: pd.DataFrame, MAX_SPEED: int):
 def get_newest_test_sample(MAX_SPEED: int):
     return split_data(get_dataframe_content(3), MAX_SPEED)
 
+def get_segments_length_map() -> dict[int, float]:
+    table = get_dataframe_content(3)
+    segments_len_map = defaultdict(int)
+    for index, row, in table.iterrows():
+        segments_len_map[row["segment_id"]] = row["length"]
+
+    return segments_len_map
+
 
 #fetch(3000)
 

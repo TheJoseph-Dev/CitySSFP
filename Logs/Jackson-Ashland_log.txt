@@ -1,0 +1,19 @@
+
+ < Jackson ==> Ashland >
+ Max. Velocity: 60 km/h	 Time: 181.53400320000003 seconds   Distance: 3.0255667200000005 km
+ The shortest route is: 
+ ['Jackson', 'Wacker', 'Grand', 'North Ave', 'Clark', 'Ashland'] 
+ [1298, 871, 47, 875, 316]
+
+ < Jackson ==> Ashland >
+ Max. Velocity: 60 km/h	 Time: 202.77734400000003 seconds   Distance: 3.3796224 km
+ The fastest route is: 
+ ['Jackson', 'Wacker', 'Halsted', 'Racine', 'Ashland'] 
+ [1298, 1058, 1059, 465]
+SSFP is 34.19 seconds faster than normal SSSP
+
+ < Jackson ==> Ashland >
+ Max. Velocity: 60 km/h	 Time: 204.57600647508733 seconds   Distance: 3.3796224 km
+ The fastest future route is: 
+ ['Jackson', 'Wacker', 'Halsted', 'Racine', 'Ashland'] 
+ [1298, 1058, 1059, 465]

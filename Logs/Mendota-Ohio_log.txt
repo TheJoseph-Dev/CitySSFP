@@ -1,0 +1,19 @@
+
+ < Mendota ==> Ohio >
+ Max. Velocity: 60 km/h	 Time: 385.27695360000007 seconds   Distance: 6.421282560000001 km
+ The shortest route is: 
+ ['Mendota', 'Touhy', 'Pratt', 'Devon', 'Central', 'Milwaukee', 'Chicago', 'Illinois', 'Randolph', 'Ohio'] 
+ [527, 848, 847, 525, 854, 155, 1283, 1281, 908]
+
+ < Mendota ==> Ohio >
+ Max. Velocity: 60 km/h	 Time: 571.1851008000001 seconds   Distance: 7.451262719999999 km
+ The fastest route is: 
+ ['Mendota', 'Touhy', 'Pratt', 'Devon', 'Central', 'Milwaukee', 'Halsted', 'LaSalle', 'Franklin', 'Lake', 'Madison', 'Randolph', 'Ohio'] 
+ [527, 848, 847, 525, 854, 1291, 1289, 1036, 1035, 1034, 867, 908]
+SSFP is 29.41 seconds faster than normal SSSP
+
+ < Mendota ==> Ohio >
+ Max. Velocity: 60 km/h	 Time: 571.2347354531452 seconds   Distance: 7.451262719999999 km
+ The fastest future route is: 
+ ['Mendota', 'Touhy', 'Pratt', 'Devon', 'Central', 'Milwaukee', 'Halsted', 'LaSalle', 'Franklin', 'Lake', 'Madison', 'Randolph', 'Ohio'] 
+ [527, 848, 847, 525, 854, 1291, 1289, 1036, 1035, 1034, 867, 908]

@@ -1,0 +1,19 @@
+
+ < Mendota ==> Oriole >
+ Max. Velocity: 60 km/h	 Time: 403.6234752 seconds   Distance: 6.72705792 km
+ The shortest route is: 
+ ['Mendota', 'Touhy', 'Pratt', 'Devon', 'Central', 'Austin', 'Narragansett', 'Oak Park', 'Harlem', 'Oriole'] 
+ [527, 848, 847, 525, 305, 198, 197, 12, 1011]
+
+ < Mendota ==> Oriole >
+ Max. Velocity: 60 km/h	 Time: 409.36105958360025 seconds   Distance: 6.822684326393338 km
+ The fastest route is: 
+ ['Mendota', 'Touhy', 'Pratt', 'Devon', 'Central', 'Ridgeland', 'Harlem', 'Oriole'] 
+ [527, 848, 847, 525, 1103, 1102, 1011]
+SSFP is 56.86 seconds faster than normal SSSP
+
+ < Mendota ==> Oriole >
+ Max. Velocity: 60 km/h	 Time: 412.93626031991073 seconds   Distance: 6.822684326393338 km
+ The fastest future route is: 
+ ['Mendota', 'Touhy', 'Pratt', 'Devon', 'Central', 'Ridgeland', 'Harlem', 'Oriole'] 
+ [527, 848, 847, 525, 1103, 1102, 1011]

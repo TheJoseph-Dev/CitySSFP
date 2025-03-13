@@ -1,0 +1,19 @@
+
+ < Ohio ==> Oriole >
+ Max. Velocity: 60 km/h	 Time: 432.5916672 seconds   Distance: 7.20986112 km
+ The shortest route is: 
+ ['Ohio', 'Randolph', '1550 West', 'Ashland', 'Clark', 'North Ave', 'Milwaukee', 'Central', 'Austin', 'Narragansett', 'Oak Park', 'Harlem', 'Oriole'] 
+ [922, 1061, 1062, 295, 882, 356, 860, 229, 198, 197, 12, 301]
+
+ < Ohio ==> Oriole >
+ Max. Velocity: 60 km/h	 Time: 585.7902819836004 seconds   Distance: 7.305487526393338 km
+ The fastest route is: 
+ ['Ohio', 'Randolph', '1550 West', 'Ashland', 'Clark', 'North Ave', 'Milwaukee', 'Central', 'Ridgeland', 'Harlem', 'Oriole'] 
+ [922, 1061, 1062, 295, 882, 356, 860, 1103, 1102, 1011]
+SSFP is 31.15 seconds faster than normal SSSP
+
+ < Ohio ==> Oriole >
+ Max. Velocity: 60 km/h	 Time: 584.5345094965941 seconds   Distance: 7.305487526393338 km
+ The fastest future route is: 
+ ['Ohio', 'Randolph', '1550 West', 'Ashland', 'Clark', 'North Ave', 'Milwaukee', 'Central', 'Ridgeland', 'Harlem', 'Oriole'] 
+ [922, 1061, 1062, 295, 882, 356, 860, 1103, 1102, 1011]

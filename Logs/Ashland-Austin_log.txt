@@ -1,0 +1,30 @@
+Distance:
+< Ashland ==> Austin >
+ Max. Velocity: 60 km/h  Time: 168.01551360000002 seconds   Distance: 2.80025856 km
+ The shortest route is:
+ ['Ashland', 'Clark', 'North Ave', 'Milwaukee', 'Central', 'Austin']
+ [295, 882, 156, 860, 229]
+
+Time: 
+< Ashland ==> Austin >
+ Max. Velocity: 60 km/h  Time: 235.1505024 seconds   Distance: 2.80025856 km
+ The fastest route is:
+ ['Ashland', 'Clark', 'North Ave', 'Milwaukee', 'Central', 'Austin']
+ [295, 882, 356, 860, 229]
+
+Dynamic:
+< Ashland ==> Austin >
+ Max. Velocity: 60 km/h  Time: 231.1439130883927 seconds   Distance: 2.80025856 km
+ The fastest future route is:
+ ['Ashland', 'Clark', 'North Ave', 'Milwaukee', 'Central', 'Austin']
+ [295, 882, 356, 860, 229]
+
+Dynamic (Fast):
+< Ashland ==> Austin >
+ Max. Velocity: 60 km/h  Time: 233.6895232964152 seconds   Distance: 2.80025856 km
+ The fastest future route is:
+ ['Ashland', 'Clark', 'North Ave', 'Milwaukee', 'Central', 'Austin']
+ [295, 882, 356, 860, 229]
+
+-----
+

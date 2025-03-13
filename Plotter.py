@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-def plot_segment(compressed_segment: int, x_axes: list, y_axes: list):
+def plot_segment(compressed_segment: int, x_axes: list, y_axes: list, labelList: list[str] = ["Train", "Test", "Prediction"], lineStyles: list[str] = ['-', '-', '-']):
     for i in range(len(y_axes)):
         plot_x = np.reshape(x_axes[i], (-1))
         #plot_y = y_axes[i].transpose()[compressed_segment]
@@ -9,7 +9,7 @@ def plot_segment(compressed_segment: int, x_axes: list, y_axes: list):
         #plot_y *= MAX_SPEED
 
         # Create the plot
-        plt.plot(plot_x, plot_y, label=f'{compressed_segment}')
+        plt.plot(plot_x, plot_y, linestyle=lineStyles[i], label=f'{labelList[i]}')
 
     # plot_y = y.transpose()[1]
     # plot_y *= MAX_SPEED

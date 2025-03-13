@@ -7,7 +7,7 @@ from tensorflow.keras.preprocessing.sequence import TimeseriesGenerator
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-from DataFetch import get_dataframe_content, split_data
+from DataFetch import get_dataframe_content, split_data #, get_newest_test_sample
 from Plotter import plot_segment
 from datetime import datetime
 
@@ -15,7 +15,23 @@ print(keras.__version__)
 print(keras.backend.backend())
 
 MAX_SPEED = 60
-data = get_dataframe_content(2)
+
+'''
+#Multiple Predictions (Recursive) Test
+from NeuralNetwork import NeuralNetwork
+nn = NeuralNetwork("Model-10x-20250308-003101-AC-55.h5")
+x, y, compressed_segments = get_newest_test_sample(MAX_SPEED)
+t_y = y.transpose()[1]
+p_y: np.ndarray = t_y[:25]
+for i in range(0, 7):
+    nx, ny, p = nn.predict(x[i:25+i], p_y, 1, False)
+    p_y = np.append(p_y, p[-1])
+    plot_segment(1, [x, x[:25+i+1]], [t_y, p_y[:25+i+1]])
+
+exit()
+'''
+
+data = get_dataframe_content(100)
 print(data.head())
 
 def split_test_data(compressed_segment: int, x, y, p: float):
@@ -26,7 +42,7 @@ def split_test_data(compressed_segment: int, x, y, p: float):
     partition = int(len(x)*p) + 1
     return x[:partition], single_y[:partition], x[partition:], single_y[partition:]
 
-x, y = split_data(data, MAX_SPEED)
+x, y, c = split_data(data, MAX_SPEED)
 train_x, train_y, test_x, test_y = split_test_data(0, x, y, 0.7)
 
 SEGMENTS = y.shape[1]
@@ -56,15 +72,6 @@ def get_model(ts_generator, epochs: int = 32) -> Sequential:
 print(f"x: {train_x.shape} {test_x.shape} | y: {train_y.shape} {test_y.shape}")
 model = get_model(generator, 32)
 
-#output = model.predict(test_x.reshape((-1, LOOKBACK, 1)))
-# x_inputs = []
-# for i in range(LOOKBACK, len(test_x)):
-#     # For each step, we extract the last LOOKBACK values
-#     x_input = test_x[i-LOOKBACK:i].reshape((LOOKBACK, 1))  # Shape: (LOOKBACK, 1)
-#     x_inputs.append(x_input)
-
-# # Convert the list of inputs into a numpy array with shape (num_samples, LOOKBACK, 1)
-# x_inputs = np.array(x_inputs)  # Shape: (num_samples, LOOKBACK, 1)
 
 generator = TimeseriesGenerator(test_y, test_y, length = LOOKBACK,
                                                 sampling_rate = 1,
@@ -74,12 +81,7 @@ generator = TimeseriesGenerator(test_y, test_y, length = LOOKBACK,
 predictions = model.predict(generator)
 print(predictions.shape)
 
-# def evaluate_accuracy(test_y, predictions):
-#     mse = np.mean((test_y - predictions) ** 2)
-#     print(f"MSE: {mse}")
-#evaluate_accuracy(test_y[LOOKBACK:], predictions)
-
-plot_segment(0, [train_x, test_x, test_x[LOOKBACK:]], [train_y, test_y, predictions])
+plot_segment(0, [train_x, test_x, test_x[LOOKBACK:]], [train_y, test_y, predictions], lineStyles=['-', '-', '--'])
 
 for i in range(1, 6):
     train_x, train_y, test_x, test_y = split_test_data(i, x, y, 0.7)
@@ -89,7 +91,7 @@ for i in range(1, 6):
                                                     batch_size    = BATCH_SIZE)
 
     predictions = model.predict(generator)
-    plot_segment(i, [train_x, test_x, test_x[LOOKBACK:]], [train_y, test_y, predictions])
+    plot_segment(i, [train_x, test_x, test_x[LOOKBACK:]], [train_y, test_y, predictions], lineStyles=['-', '-', '--'])
 
 model.summary()
 scores = model.evaluate(generator)

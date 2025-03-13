@@ -1,0 +1,19 @@
+
+ < Ridge ==> Jackson >
+ Max. Velocity: 60 km/h	 Time: 196.5014476077345 seconds   Distance: 3.275024126795575 km
+ The shortest route is: 
+ ['Ridge', 'Ashland', 'Clark', 'North Ave', 'Grand', 'Wacker', 'Jackson'] 
+ [1189, 295, 882, 87, 878, 1299]
+
+ < Ridge ==> Jackson >
+ Max. Velocity: 60 km/h	 Time: 216.29583360000004 seconds   Distance: 3.60493056 km
+ The fastest route is: 
+ ['Ridge', 'Lake Shore Dr', 'Michigan', 'Wacker', 'Jackson'] 
+ [793, 1040, 1057, 1299]
+SSFP is 21.93 seconds faster than normal SSSP
+
+ < Ridge ==> Jackson >
+ Max. Velocity: 60 km/h	 Time: 218.21447564080114 seconds   Distance: 3.60493056 km
+ The fastest future route is: 
+ ['Ridge', 'Lake Shore Dr', 'Michigan', 'Wacker', 'Jackson'] 
+ [793, 1040, 1057, 1299]

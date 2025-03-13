@@ -1,16 +1,9 @@
 import pandas as pd
 from Graph import Graph
 from DataFetch import get_dataframe_content
-
-'''
-In order to predict the route in a reasonable time, it's going to be necessary to fetch
-some real-time data.
-Because the model's LOOKBACK = 24, it's going to be necessary at least 24 timestamps for each segment
-at least 24 * 1047 = 25128 rows
-Fetching data takes a long time, in this case, we're going to use a recursive approach to predict next values
-and avoid refetching
-Gotta make easier to map and remap values too
-'''
+import pickle
+import os.path
+import sys
 
 def get_sets(content: pd.DataFrame):
     vertices_compress = {}
@@ -53,6 +46,50 @@ def create_city_graph(vertices_compress, vertices_map, streets_set) -> Graph:
     #print("edge count: " + str(c))
     return city
 
+def get_city_graph(vertices_compress, vertices_map, streets_set) -> Graph:
+    FILEPATH = "city-graph.bin"
+    if os.path.isfile(FILEPATH): return pickle.load(open(FILEPATH, "rb"))
+
+    city = create_city_graph(vertices_compress, vertices_map, streets_set)
+    pickle.dump(city, open(FILEPATH, "wb"))
+    return city
+
+
+MAX_SPEED = 60 # Km
+def find_routes(city: Graph, SRC: str, TARGET: str, vertices_compress, vertices_map, save_output: bool = True):
+    FILEPATH = f"Logs/{SRC}-{TARGET}_log.txt"
+    logs = open(FILEPATH, 'w')
+    outputfile = logs if save_output else sys.stdout
+
+    sssp = city.dijkstra(vertices_compress[SRC], vertices_compress[TARGET])
+    HAS_ROUTE = (sssp[0] != float('inf'))
+
+    print(f"\n < {SRC} ==> {TARGET} >", file=outputfile)
+    print(f" Max. Velocity: {MAX_SPEED} km/h\t Time: " + str(sssp[0]) + " seconds   Distance: " + str(sssp[1]) + " km" , file=outputfile)
+    if HAS_ROUTE: print(f" The shortest route is: \n {[vertices_map[node] for node in sssp[2]]} \n {sssp[3]}", file=outputfile)
+    else: print(f" There's no route between {SRC} and {TARGET}", file=outputfile); 
+
+
+    ssfp = city.dijkstra_time(vertices_compress[SRC], vertices_compress[TARGET])
+    HAS_ROUTE = (ssfp[0] != float('inf'))
+
+    print(f"\n < {SRC} ==> {TARGET} >", file=outputfile)
+    print(f" Max. Velocity: {MAX_SPEED} km/h\t Time: " + str(ssfp[0]) + " seconds   Distance: " + str(ssfp[1]) + " km", file=outputfile)
+    if HAS_ROUTE: print(f" The fastest route is: \n {[vertices_map[node] for node in ssfp[2]]} \n {ssfp[3]}", file=outputfile)
+    else: print(f" There's no route between {SRC} and {TARGET}", file=outputfile)
+
+    print("SSFP is %.2f seconds faster than normal SSSP" % (city.get_path_time(sssp[3])-ssfp[0]), file=outputfile)
+
+    ssfp = city.dynamic_dijkstra(vertices_compress[SRC], vertices_compress[TARGET])
+    HAS_ROUTE = (ssfp[0] != float('inf'))
+
+    print(f"\n < {SRC} ==> {TARGET} >", file=outputfile)
+    print(f" Max. Velocity: {MAX_SPEED} km/h\t Time: " + str(ssfp[0]) + " seconds   Distance: " + str(ssfp[1]) + " km", file=outputfile)
+    if HAS_ROUTE: print(f" The fastest future route is: \n {[vertices_map[node] for node in ssfp[2]]} \n {ssfp[3]}", file=outputfile)
+    else: print(f" There's no route between {SRC} and {TARGET}", file=outputfile)
+
+    logs.close()
+
 def run():
 
     content = get_dataframe_content(10)
@@ -62,18 +99,11 @@ def run():
     print(f"Endpoints: {len(vertices_map)}")
     print(f"Segments: {len(streets_set)}")
 
+    SRC = "Mendota"
+    TARGET = "Oriole"
+
     city = create_city_graph(vertices_compress, vertices_map, streets_set)
 
-    SRC = "Damen"
-    TARGET = "Western"
-    MAX_SPEED = 60 # Km
-
-    sssp = city.dynamic_dijkstra(vertices_compress[SRC], vertices_compress[TARGET])
-    HAS_ROUTE = (sssp[0] != float('inf'))
-
-    print(f"\n < {SRC} ==> {TARGET} >")
-    print(f" Max. Velocity: {MAX_SPEED} km/h\t Time: " + str(sssp[0]) + " seconds   Distance: " + str(sssp[1]) + " km")
-    if HAS_ROUTE: print(f" The shortest route is: \n {[vertices_map[node] for node in sssp[2]]} \n {sssp[3]}")
-    else: print(f" There's no route between {SRC} and {TARGET}")
+    find_routes(city, SRC, TARGET, vertices_compress, vertices_map)
 
 run()
